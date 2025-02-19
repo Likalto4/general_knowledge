@@ -61,6 +61,10 @@ To know whether you are connected to the server or not, look at the bottom left 
 
 To exit, press that same blue button and select `Disconnect from Host`. In theory, you can close the VSCode window and you will still be connected to the server, but it is better to disconnect before closing the window.
 
+### Access to the server without password
+
+If you are tired of typing the password every time you connect to the server, you can set up an SSH key. This is a more secure way to connect to the server, as you don't need to type the password every time you connect. You can follow [this nice tutorial](https://www.youtube.com/watch?v=PDVnUErS_us) to do it.
+
 
 # Best practices
 
