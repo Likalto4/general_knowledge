@@ -151,6 +151,31 @@ To close a window you can press `Ctrl+b` and then `&`. You could also go the win
 
 To close a pane, you can press `Ctrl+b` and then `x`. You can also go to the pane you want to close and type `exit` in the terminal.
 
+For more tmux commands take [a look here](https://tmuxcheatsheet.com/).
+
 ## Improving tmux experience
 
-In my opinion, the original tmux visual design is not very user-friendly. If you want to improve your tmux experience, you can take a look at [this repository](https://github.com/gpakosz/.tmux).
+1. Depending on the IDE you are using for coding, it may be wise to change the defualt prefix key of tmux. The reason is, `ctrl+b` is also used for other shortcuts and they may interfere. I recommend changing it to `ctrl+a`, for instance but you can choose any other key you like.
+
+To change the prefix key, first open the tmux configuration file by running:
+```bash
+nano ~/.tmux.conf
+```
+(<i>If the file does not exist, you can create it by running `touch ~/.tmux.conf`</i>)
+
+Then add the following line to the file:
+```bash
+set -g prefix C-a
+```
+
+(Optional) Unbind the default prefix key:
+```bash
+unbind C-b
+```
+
+After saving the file, you can reload the tmux configuration by running:
+```bash
+tmux source-file ~/.tmux.conf
+```
+
+2. In my opinion, the original tmux visual design is not very user-friendly. If you want to improve your tmux experience, you can take a look at [this repository](https://github.com/gpakosz/.tmux).
