@@ -111,4 +111,46 @@ fastfetch
 
 # Tmux
 
-Tmux is a terminal multiplexer. It allows you to run multiple terminals in the same window. This is useful when you want to run multiple processes at the same time, or when you want to keep a process running even if you close the terminal.
+Tmux is a terminal multiplexer. It allows you to run multiple terminals in the same window. This is useful when you want to run multiple processes at the same time, or when you want to keep a process running even if you close the terminal. This is ideal for us, as we usually run processes that may take hours to finish (like training models or processing data).
+
+Assuming tmux is installed (already in our servers), you can start a new tmux session by running:
+```bash
+tmux
+```
+When you run this command, you will see a green bar at the bottom of the terminal. This means you are now in a tmux session. You can now run any command you want, and it will be running in this session. Even if you close the terminal, the process will keep running.
+
+If you want to leave the tmux session but keep it running in the background you can press `Ctrl+b` and then `d`. This will detach the session and you will be back to the terminal.
+
+If you already have a tmux session running, you can access it again by running:
+```bash
+tmux attach
+```
+
+Before we move to the next section, keep in mind two important features that are going to be useful when you are using tmux: the
+- <u>The prefix key:</u> This is the key that you press before running a tmux command. By default, the prefix key is `Ctrl+b`. This means that if you want to run a tmux command, you have to press `Ctrl+b` and then the command.
+- <u>The command key</u>: This is the key that you press to run a tmux command. By default, the command key is `:`. This means that if you want to run a tmux command, you have to press `Ctrl+b` and then `:`.
+
+## How does tmux work?
+
+Tmux works with the concept of sessions, windows, and panes.
+
+<u>Sessions</u> are the highest level of organization. You can have multiple sessions running at the same time. You can create a new session by running:
+```bash
+tmux new -s session_name
+```
+
+Where `session_name` is the name of the session. Sessions are usually used to group processes that are related to each other. For example, if you are working on a project about "skin lession" then you can create a session called "skin_project".
+
+To close a session, you can press `Ctrl+b` and then `:` and then type `kill-session`. To rename a session, you can press `Ctrl+b` and then `$`.
+
+<u>Windows</u> are the second level of organization. You can have multiple windows in a session. They are like tabs in a browser. You can create a new window by pressing `Ctrl+b` and then `c`. You can switch between windows by pressing `Ctrl+b` and then the window number.
+
+To close a window you can press `Ctrl+b` and then `&`. You could also go the window you want to close and type `exit` in the terminal. To rename a window, you can press `Ctrl+b` and then `,`.
+
+<u>Panes</u> are the third level of organization. You can have multiple panes in a window. They are like split screens. You can create a new pane by pressing `Ctrl+b` and then `%` (for a vertical split) or `"` (for a horizontal split). You can switch between panes by pressing `Ctrl+b` and then the arrow key in the direction you want to go.
+
+To close a pane, you can press `Ctrl+b` and then `x`. You can also go to the pane you want to close and type `exit` in the terminal.
+
+## Improving tmux experience
+
+In my opinion, the original tmux visual design is not very user-friendly. If you want to improve your tmux experience, you can take a look at [this repository](https://github.com/gpakosz/.tmux).
