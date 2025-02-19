@@ -3,6 +3,21 @@
 The connection to our UdG servers is done through the SSH protocol. This protocol is secure and allows you to connect to the server and execute commands on it.
 There are many ways to connect to a server via SSH, but the two most common methods we use in the lab are: using a terminal or using VSCode with the Remote-SSH extension.
 
+Forst of all, be sure that SSH is installed in your machine.
+You can check this by typing:
+```bash
+ssh -V
+```
+
+This will show you the version of the SSH client installed in your machine. If you see a version number, then SSH is installed.
+
+If you see an error message, then you need to install SSH. To do this follow the instructions for your operating system. For Ubuntu:
+```bash
+sudo apt-get install openssh-client
+```
+
+Notice that you only need to install the SSH client, not the server, as we are going to connect to a server, not create one.
+
 ## Using a terminal
 This is the most basic connection you can make to the server.
 The command is:
