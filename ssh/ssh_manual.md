@@ -1,4 +1,4 @@
-# Introduction
+# Introduction to SSH
 
 The connection to our UdG servers is done through the SSH protocol. This protocol is secure and allows you to connect to the server and execute commands on it.
 There are many ways to connect to a server via SSH, but the two most common methods we use in the lab are: using a terminal or using VSCode with the Remote-SSH extension.
@@ -44,4 +44,71 @@ That's it! You are now connected to the server using VSCode. You can now open a 
 
 To know whether you are connected to the server or not, look at the bottom left corner of the VSCode window. You will see the name of the server you are connected to.
 
-To exit, press that same blue button and select `Disconnect from Host`.
+To exit, press that same blue button and select `Disconnect from Host`. In theory, you can close the VSCode window and you will still be connected to the server, but it is better to disconnect before closing the window.
+
+
+# Best practices
+
+You are now connected to the server, but there are some best practices you should follow to avoid problems and to keep the server running smoothly.
+
+1. Check your resources:
+
+Remember there are <b>other users</b> connected to the server. Be respectful and don't do anything that could affect them. For example, don't run heavy processes that could slow down the server. The best way to know the memory and CPU usage is by running:
+```bash
+htop
+```
+
+This will show you the processes running on the server and the resources they are using, organized by user name, PID (tag), CPU usage, memory usage, etc. You can also see the overall memory and CPU usage at the top of the screen.
+
+For GPU usage, you can run:
+```bash
+nvidia-smi
+```
+
+This will show you the GPU usage, memory usage, temperature, etc. Also, if you ever wonder the Nvidia driver, GPU model and cuda version you can find this information in the first lines of the output.
+
+Finally, for disk usage, you can run:
+```bash
+df -h
+```
+
+This will show you the disk usage of the server in general.
+
+If you want to know the disk usage of your specific user directory
+```bash
+du -sh /home/username
+```
+    
+Where `username` is your username.
+
+2. Killing processes:
+
+Sometimes, some processes can get stuck and use a lot of resources. If you see that the server is slow, you can kill a process by running:
+```bash
+kill -9 PID
+```
+
+Where `PID` is the process ID. You can find the PID by running `htop` or `nvidia-smi`. Be careful when killing processes, as you could kill a process that is important for the server. Only kill processes that you know are not important.
+
+4. Specify the GPU in your code
+When using the GPU, always specify the GPU you want to use in your code. This is important because if you don't specify the GPU, your code could use all the GPUs on the server, affecting other users. To specify the GPU in your code, you can use the following code:
+
+```python
+## extra imports to set GPU options
+import torch
+###################################
+selected_gpu = 0 # here you select the GPU used (0, 1 or 2)
+device = torch.device("cuda:" + str(selected_gpu) if
+torch.cuda.is_available() else "cpu")
+```
+There may be other ways to specify the GPU in your code, but this is a simple way to do it.
+
+3. General information about the server:
+Fastfetch is a tool that shows you information about the server you are connected to.
+```bash
+fastfetch
+```
+
+# Tmux
+
+Tmux is a terminal multiplexer. It allows you to run multiple terminals in the same window. This is useful when you want to run multiple processes at the same time, or when you want to keep a process running even if you close the terminal.
