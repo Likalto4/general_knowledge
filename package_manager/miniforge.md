@@ -40,3 +40,27 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
 4. Follow the on-screen instructions to complete the installation. Done!
+
+### Addional settings
+
+When using Mamba for the first time, you may be asked to add some extra settings.
+
+1. Add Mamba root prefix as an environment variable (permanently):
+
+```bash
+echo 'export MAMBA_ROOT_PREFIX="$HOME/miniforge3"' >> ~/.bashrc
+source ~/.bashrc
+```
+Essentially, we added a line to the `.bashrc` file.
+This makes the variable $MAMBA_ROOT_PREFIX available to all your terminal sessions.
+
+2. Allow Mamba to initialize itself:
+
+```bash
+mamba shell init --shell bash
+source ~/.bashrc
+```
+
+This line essentially modifies the .bashrc file to include the Mamba initialization script.
+
+
