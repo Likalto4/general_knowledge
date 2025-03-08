@@ -65,6 +65,37 @@ To exit, press that same blue button and select `Disconnect from Host`. In theor
 
 If you are tired of typing the password every time you connect to the server, you can set up an SSH key. This is a more secure way to connect to the server, as you don't need to type the password every time you connect. You can follow [this nice tutorial](https://www.youtube.com/watch?v=PDVnUErS_us) to do it.
 
+Essentially, you have to do the following:
+
+1. Generate an SSH key pair in your local machine:
+```bash
+ssh-keygen -t ed25519
+```
+You could select between rsa, ed25519 or ecdsa. Search more about the differences between them to choose the one that fits you better. In general, for modern systems, ed25519 is the best choice.
+
+This command will generate two files: `id_ed25519` and `id_ed25519.pub`. The first one is the private key and the second one is the public key.
+
+2. Copy the public key to the server. For this, open the public key file and copy its content.
+
+Then, connect to the server and run the following command:
+```bash
+echo "public_key_content" >> ~/.ssh/authorized_keys
+```
+Where `public_key_content` is the content of the public key file. This will add the public key to the authorized keys file in the server. You can also manually open the authorized keys file and paste the public key there using nano or vim.
+
+Note: If the authorized keys file does not exist, you can create it by running:
+```bash
+touch ~/.ssh/authorized_keys
+```
+
+3. In the VScode SSH configuration file, add the following line to the configuration of your server:
+```bash
+IdentityFile ~/.ssh/id_ed25519
+```
+This will tell VSCode to use the private key to connect to the server.
+
+Now, when you connect to the server, you will not be asked for the password. You will be connected directly!
+
 
 # Best practices
 
