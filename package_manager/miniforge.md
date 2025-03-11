@@ -45,16 +45,21 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 
 When using Mamba for the first time, you may be asked to add some extra settings.
 
-1. Add Mamba root prefix as an environment variable (permanently):
+1. First, update mamba and conda to their latest versions:
+
+```bash
+mamba update mamba conda
+```
+
+2. Add Mamba root prefix as an environment variable (permanently):
 
 ```bash
 echo 'export MAMBA_ROOT_PREFIX="$HOME/miniforge3"' >> ~/.bashrc
 source ~/.bashrc
 ```
-Essentially, we added a line to the `.bashrc` file.
-This makes the variable $MAMBA_ROOT_PREFIX available to all your terminal sessions.
+Essentially, this command adds a line to the `.bashrc` file, which makes the variable $MAMBA_ROOT_PREFIX available to all your terminal sessions.
 
-2. Allow Mamba to initialize itself:
+3. Allow Mamba to initialize itself:
 
 ```bash
 mamba shell init --shell bash
